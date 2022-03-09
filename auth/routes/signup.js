@@ -1,14 +1,15 @@
 'use strict';
 const express = require('express');
 const {users} = require('../models/index');
-const router = express.Router();
+const routers = express.Router();
 const bcrypt = require('bcrypt');
 
-router.post('/signup', signupFunc);
+routers.post('/signup', signupFunc);
 
 async function signupFunc(req, res) {
-    let { username, password } = req.body;
     
+    let username=req.body.username;
+    let password=req.body.password;
     try {
         let hashedPassword = await bcrypt.hash(password, 5);
         
@@ -21,5 +22,5 @@ async function signupFunc(req, res) {
         console.log(error)
     }
 }
-module.exports = router;
+module.exports = routers;
 
