@@ -9,6 +9,6 @@ const authentication = require('../middleware/authentication.js');
 router.post('/signin',authentication,signinFunc);
 
 async function signinFunc(req,res) {
-    res.status(200).json({username:username});
+    res.status(200).json(req.user);
 }
 module.exports = router;

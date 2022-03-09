@@ -1,9 +1,9 @@
 'use strict';
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
-const express = require('express');
+
 const {users} = require('../models/index');
-const router = express.Router();
+
     const authentication = async (req, res, next) => {
         if(req.headers['authorization']) {
             let basicHeaderParts= req.headers.authorization.split(' ');
@@ -18,7 +18,7 @@ const router = express.Router();
                 const user = await users.findOne({where:{username:username}});
                 const valid = await bcrypt.compare(password,user.password);
                 if(valid) {
-                    
+                    req.user = user;
                     next();
                 } else {
                     next(`input is invalid`);
