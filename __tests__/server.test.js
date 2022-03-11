@@ -40,9 +40,5 @@ it("test signin insert invalid password",async()=>{
     const response=await request.post("/signin").auth('test','wrongPassword');
     expect(response.status).toEqual(500);
 })
-// it("test signin insert invalid username",async()=>{
-    
-//     const response=await request.post("/signin").auth('wrongUsername','test');
-//     expect(response.status).toBe(500);
-// })
+
 })
